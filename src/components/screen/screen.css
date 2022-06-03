@@ -1,0 +1,24 @@
+.spinner {
+  border-top: 5px solid aqua;
+  border-radius: 50%;
+  height: 5rem;
+  width: 5rem;
+  margin: auto;
+  margin-top: 3rem;
+  animation: spinin 1s infinite linear;
+}
+
+@keyframes spinin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
