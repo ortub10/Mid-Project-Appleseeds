@@ -1,0 +1,10 @@
+.contain_detailes {
+  padding: 5rem;
+}
+
+.contain_detailes td,
+.contain_detailes th {
+  border: 1px solid black;
+  text-align: center;
+  padding: 0.5rem;
+}

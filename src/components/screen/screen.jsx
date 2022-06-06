@@ -6,14 +6,18 @@ import Home from "./conponents/home/home";
 import DetailesProduct from "./conponents/detailesProduct/detailesProduct";
 import Projects from "./conponents/projects/projects";
 import { Switch } from "react-router-dom";
-import ListProject from "./conponents/projects/components/listProject/listProject";
+import ListProject from "./conponents/projects/components/listProjects/listProject";
 
 export const myContext = createContext();
 
 const Screen = () => {
   const [isLoad, setIsLoad] = useState(true);
   const [productsData, setProductsData] = useState([]);
-  const [projectsArr, setProjectsArr] = useState([]);
+  const [projectsArr, setProjectsArr] = useState(
+    JSON.parse(localStorage.getItem("arr")) === null
+      ? []
+      : JSON.parse(localStorage.getItem("arr")).arr
+  );
 
   useEffect(() => {
     const callApi = async () => {

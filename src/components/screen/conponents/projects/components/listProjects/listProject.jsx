@@ -19,7 +19,7 @@ const ListProject = ({
         <div className="header">headQuarter</div>
         <div className="header">Type</div>
       </div>
-      {project.pro.map((product) => {
+      {project.stocks.map((product) => {
         return (
           <NavLink
             to={`./${nameProject}/${product.symbol}`}
