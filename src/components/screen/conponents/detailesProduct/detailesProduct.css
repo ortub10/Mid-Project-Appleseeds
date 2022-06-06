@@ -1,4 +1,8 @@
-.contain_detailes {
+button {
+  font-size: 1rem;
+}
+
+.contain_detailes table {
   padding: 5rem;
 }
 
@@ -7,4 +11,12 @@
   border: 1px solid black;
   text-align: center;
   padding: 0.5rem;
+}
+
+.contain_detailes tr:nth-child(2n) {
+  background-color: #f4f4f4;
+}
+.contain_detailes h2 {
+  text-align: center;
+  padding-top: 3rem;
 }

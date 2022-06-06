@@ -1,4 +1,4 @@
-.popup {
+.popup_product {
   position: fixed;
   top: 0;
   left: 0;
@@ -10,7 +10,7 @@
   align-items: center;
 }
 
-.popup-inner {
+.popup-inner_product {
   position: relative;
   padding: 2rem;
   width: 100%;
@@ -20,4 +20,10 @@
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+}
+
+.project_title {
+  cursor: pointer;
+  padding: 1rem;
+  border: 1px solid black;
 }

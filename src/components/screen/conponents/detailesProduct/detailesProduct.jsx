@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
 import AddProduct from "./components/addProduct/AddProduct";
 import "./detailesProduct.css";
-
 const DetailesProduct = ({
   match: {
     params: { symbol },
@@ -26,7 +24,7 @@ const DetailesProduct = ({
       }
     };
     callApi();
-  }, []);
+  }, [symbol]);
 
   return (
     <>
@@ -35,8 +33,13 @@ const DetailesProduct = ({
       ) : (
         <div>
           <button onClick={() => setButtonPopup(true)}>Save</button>
-          <AddProduct trigger={buttonPopup} setTrigger={setButtonPopup} />
+          <AddProduct
+            symbol={symbol}
+            trigger={buttonPopup}
+            setTrigger={setButtonPopup}
+          />
           <div className="contain_detailes">
+            <h2>{symbol}</h2>
             <table>
               <thead>
                 <tr>
@@ -66,9 +69,6 @@ const DetailesProduct = ({
               </tbody>
             </table>
           </div>
-          <NavLink to="./">
-            <i className="fa fa-arrow-left fa-2x"></i>
-          </NavLink>
         </div>
       )}
     </>

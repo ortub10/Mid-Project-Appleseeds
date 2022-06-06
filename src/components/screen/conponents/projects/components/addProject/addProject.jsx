@@ -8,7 +8,6 @@ const AddProject = (props) => {
 
   useEffect(() => {
     localStorage.setItem("arr", JSON.stringify({ arr: projectsArr }));
-    // localStorage.clear();
   }, [projectsArr]);
 
   const add = () => {

@@ -1,12 +1,12 @@
 import { createContext, useEffect, useState } from "react";
-import Header from "./conponents/header/header";
-import "./screen.css";
 import { Route } from "react-router-dom";
+import { Switch } from "react-router-dom";
+import Header from "./conponents/header/header";
 import Home from "./conponents/home/home";
 import DetailesProduct from "./conponents/detailesProduct/detailesProduct";
 import Projects from "./conponents/projects/projects";
-import { Switch } from "react-router-dom";
 import ListProject from "./conponents/projects/components/listProjects/listProject";
+import "./screen.css";
 
 export const myContext = createContext();
 
