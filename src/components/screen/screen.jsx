@@ -7,62 +7,62 @@ import DetailesProduct from "./conponents/detailesProduct/detailesProduct";
 import Projects from "./conponents/projects/projects";
 import ListProject from "./conponents/projects/components/listProjects/listProject";
 import "./screen.css";
+import { fetchNasdaqStocks } from "../../api/financialModel/financialModel";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 export const myContext = createContext();
 
 const Screen = () => {
-  const [isLoad, setIsLoad] = useState(true);
-  const [productsData, setProductsData] = useState([]);
+  const [nasdaqStocks, setNasdaqStocks] = useState({
+    pending: true,
+    data: [],
+    error: "",
+  });
+
+  const [getItem] = useLocalStorage();
   const [projectsArr, setProjectsArr] = useState(
-    JSON.parse(localStorage.getItem("arr")) === null
-      ? []
-      : JSON.parse(localStorage.getItem("arr")).arr
+    getItem("arr") === null ? [] : getItem("arr").arr
   );
 
   useEffect(() => {
-    const callApi = async () => {
+    setNasdaqStocks(() => {
+      return { pending: true, data: [], error: "" };
+    });
+
+    async function fetchAllNasdaqStocks() {
       try {
-        const response = await fetch(
-          "https://financialmodelingprep.com/api/v3/nasdaq_constituent?apikey=90115d197c5821905e19a65e7c1b1ea6"
-        );
-        const data = await response.json();
-        setProductsData(data);
-        setIsLoad(false);
-      } catch (e) {
-        console.log(e);
+        const nasdaqStocks = await fetchNasdaqStocks();
+        setNasdaqStocks({ pending: false, data: nasdaqStocks, error: "" });
+      } catch (error) {
+        setNasdaqStocks({ pending: false, data: [], error: "" });
       }
-    };
-    callApi();
+    }
+    fetchAllNasdaqStocks();
   }, []);
+
+  if (nasdaqStocks.pending) {
+    return <div className="spinner"></div>;
+  }
+
   return (
-    <>
-      {isLoad ? (
-        <div className="spinner"></div>
-      ) : (
-        <myContext.Provider
-          value={{ productsData, projectsArr, setProjectsArr }}
-        >
-          <div className="screen">
-            <Header />
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/projects" component={Projects} />
-              <Route exact path="/:symbol" component={DetailesProduct} />
-              <Route
-                exact
-                path="/projects/:nameProject"
-                component={ListProject}
-              />
-              <Route
-                exact
-                path="/projects/:nameProject/:symbol"
-                component={DetailesProduct}
-              />
-            </Switch>
-          </div>
-        </myContext.Provider>
-      )}
-    </>
+    <myContext.Provider
+      value={{ productsData: nasdaqStocks.data, projectsArr, setProjectsArr }}
+    >
+      <div className="screen">
+        <Header />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/projects" component={Projects} />
+          <Route exact path="/:symbol" component={DetailesProduct} />
+          <Route exact path="/projects/:nameProject" component={ListProject} />
+          <Route
+            exact
+            path="/projects/:nameProject/:symbol"
+            component={DetailesProduct}
+          />
+        </Switch>
+      </div>
+    </myContext.Provider>
   );
 };
 

@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+.header {
+  position: sticky;
+  top: 0;
+}
+
 .header ul {
   list-style: none;
   display: flex;

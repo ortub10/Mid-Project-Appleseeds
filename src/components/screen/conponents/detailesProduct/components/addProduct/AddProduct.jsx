@@ -1,6 +1,7 @@
 import { myContext } from "../../../../screen";
 import { useContext, useEffect, useState } from "react";
 import AddProject from "../../../projects/components/addProject/addProject";
+import { useLocalStorage } from "../../../../../../hooks/useLocalStorage";
 import "./AddProduct.css";
 
 const AddProduct = (props) => {
@@ -9,9 +10,11 @@ const AddProduct = (props) => {
 
   const product = productsData.find((item) => item.symbol === props.symbol);
 
+  const [, setItem] = useLocalStorage();
+
   useEffect(() => {
-    localStorage.setItem("arr", JSON.stringify({ arr: projectsArr }));
-  }, [projectsArr]);
+    setItem("arr", { arr: projectsArr });
+  }, [projectsArr, setItem]);
 
   const addToProject = (element) => {
     const tempItem = element.stocks.find(
@@ -21,7 +24,6 @@ const AddProduct = (props) => {
     if (tempItem === undefined) {
       const newElement = { ...element };
       newElement.stocks.push(product);
-      console.log(newElement.stocks);
       const newProjectsArr = projectsArr.map((item) => {
         if (item.name === element.name) return newElement;
         return item;
@@ -37,6 +39,7 @@ const AddProduct = (props) => {
   return props.trigger ? (
     <div className="popup_product">
       <div className="popup-inner_product">
+        <p>In which project to save?</p>
         {projectsArr.map((element) => {
           return (
             <div

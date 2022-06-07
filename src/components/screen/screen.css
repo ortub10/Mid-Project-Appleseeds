@@ -21,4 +21,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(
+    to right,
+    rgb(0, 128, 100),
+    rgb(0, 136, 102),
+    rgb(0, 184, 144)
+  );
 }

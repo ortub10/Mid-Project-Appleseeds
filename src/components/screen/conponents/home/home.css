@@ -22,14 +22,26 @@ a {
   text-decoration: none;
 }
 
-@media all and (min-width: 761px) and (max-width: 1170px) {
+@media all and (min-width: 866px) and (max-width: 1400px) {
   html {
     font-size: 10px;
   }
 }
 
-@media all and (max-width: 760px) {
+@media all and (max-width: 865px) {
   html {
     font-size: 5px;
+  }
+}
+
+@media all and (max-width: 460px) {
+  html {
+    font-size: 4px;
+  }
+}
+
+@media all and (max-width: 350px) {
+  html {
+    font-size: 3px;
   }
 }

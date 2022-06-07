@@ -17,17 +17,18 @@ const Projects = () => {
     <>
       <button onClick={() => setButtonPopup(true)}>Add New Project</button>
       <AddProject trigger={buttonPopup} setTrigger={setButtonPopup} />
-      {projectsArr.map((item) => {
+      {projectsArr.map((project) => {
         return (
-          <div className="project" key={item.name}>
-            <NavLink to={`../projects/${item.name}`}>
+          <div className="project" key={project.name}>
+            <NavLink to={`/projects/${project.name}`}>
               <div className="inner-project">
-                <h2>{item.name}</h2>
-                <p>number of products: {item.stocks.length}</p>
+                <h2>{project.name}</h2>
+                <p>number of products: {project.stocks.length}</p>
               </div>
             </NavLink>
+
             <i
-              onClick={() => handleDeleteProject(item.name)}
+              onClick={() => handleDeleteProject(project.name)}
               className="fa fa-trash-o fa-2x"
             ></i>
           </div>
