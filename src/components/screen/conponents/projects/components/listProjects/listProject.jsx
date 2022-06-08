@@ -46,6 +46,7 @@ const ListProject = ({
           <div className="header">Type</div>
           <div className="header">Delete</div>
         </div>
+
         {project.stocks.map((product) => {
           return (
             <div key={product.symbol} className="table">
@@ -71,7 +72,9 @@ const ListProject = ({
         })}
 
         <NavLink to="/projects">
-          <button className="back">Back</button>
+          <button className="back">
+            Back <i className="fa fa-angle-double-left"></i>
+          </button>
         </NavLink>
       </div>
     </>

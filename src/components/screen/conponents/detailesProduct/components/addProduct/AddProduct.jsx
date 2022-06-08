@@ -52,9 +52,16 @@ const AddProduct = (props) => {
           );
         })}
 
-        <button onClick={() => setButtonPopup(true)}>Add New Project </button>
+        <button className="add_btn btn" onClick={() => setButtonPopup(true)}>
+          Add New Project{" "}
+        </button>
         <AddProject trigger={buttonPopup} setTrigger={setButtonPopup} />
-        <button onClick={() => props.setTrigger(false)}>Cancel</button>
+        <button
+          className="cancel_btn btn"
+          onClick={() => props.setTrigger(false)}
+        >
+          Cancel
+        </button>
       </div>
     </div>
   ) : (

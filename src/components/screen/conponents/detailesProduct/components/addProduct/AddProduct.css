@@ -15,7 +15,7 @@
   padding: 2rem;
   width: 100%;
   max-width: 640px;
-  background-color: white;
+  background-color: wheat;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,5 +25,6 @@
 .project_title {
   cursor: pointer;
   padding: 1rem;
-  border: 1px solid black;
+  border: 2px solid rgb(16, 66, 100);
+  border-radius: 0.5rem;
 }

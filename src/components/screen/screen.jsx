@@ -6,9 +6,10 @@ import Home from "./conponents/home/home";
 import DetailesProduct from "./conponents/detailesProduct/detailesProduct";
 import Projects from "./conponents/projects/projects";
 import ListProject from "./conponents/projects/components/listProjects/listProject";
-import "./screen.css";
 import { fetchNasdaqStocks } from "../../api/financialModel/financialModel";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
+import logo from "./images/logo.png";
+import "./screen.css";
 
 export const myContext = createContext();
 
@@ -32,7 +33,11 @@ const Screen = () => {
     async function fetchAllNasdaqStocks() {
       try {
         const nasdaqStocks = await fetchNasdaqStocks();
-        setNasdaqStocks({ pending: false, data: nasdaqStocks, error: "" });
+        setNasdaqStocks({
+          pending: false,
+          data: nasdaqStocks,
+          error: "",
+        });
       } catch (error) {
         setNasdaqStocks({ pending: false, data: [], error: "" });
       }
@@ -49,6 +54,7 @@ const Screen = () => {
       value={{ productsData: nasdaqStocks.data, projectsArr, setProjectsArr }}
     >
       <div className="screen">
+        <img className="logo" src={logo} alt="Wrong" />
         <Header />
         <Switch>
           <Route exact path="/" component={Home} />

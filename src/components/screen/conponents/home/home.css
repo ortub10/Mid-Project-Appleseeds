@@ -1,13 +1,22 @@
-.contain_products input {
+.contain_search input {
   font-size: 1rem;
+  background-color: antiquewhite;
+  text-align: center;
 }
 
+.contain_search {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  gap: 1rem;
+}
 .table {
   display: flex;
   justify-content: center;
 }
 .table div {
-  border: 1px solid black;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.575);
+  color: white;
   width: 12rem;
   padding: 0.5rem;
   text-align: center;

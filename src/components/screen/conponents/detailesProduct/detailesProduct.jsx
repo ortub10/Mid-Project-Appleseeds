@@ -3,6 +3,7 @@ import AddProduct from "./components/addProduct/AddProduct";
 import { NavLink } from "react-router-dom";
 import "./detailesProduct.css";
 import { fetchDatesStock } from "../../../../api/financialModel/financialModel";
+import Graph from "./components/graph/graph";
 
 const DetailesProduct = ({
   match: {
@@ -23,7 +24,7 @@ const DetailesProduct = ({
         const datesStock = await fetchDatesStock(symbol);
         setDates({
           pending: false,
-          data: datesStock.slice(0, 10),
+          data: datesStock.slice(0, 10).reverse(),
           error: "",
         });
       } catch (e) {
@@ -41,7 +42,9 @@ const DetailesProduct = ({
 
   return (
     <div>
-      <button onClick={() => setButtonPopup(true)}>Save</button>
+      <button className="save_btn" onClick={() => setButtonPopup(true)}>
+        <i className="fa fa-save"></i> Save
+      </button>
       <AddProduct
         symbol={symbol}
         trigger={buttonPopup}
@@ -49,7 +52,7 @@ const DetailesProduct = ({
       />
       <div className="contain_detailes">
         <h2>{symbol}</h2>
-
+        <Graph dates={dates.data} />
         <table>
           <thead>
             <tr>
@@ -78,9 +81,10 @@ const DetailesProduct = ({
             })}
           </tbody>
         </table>
-
         <NavLink to="./">
-          <button>Back</button>
+          <button className="back_btn">
+            Back <i className="fa fa-angle-double-left"></i>
+          </button>
         </NavLink>
       </div>
     </div>

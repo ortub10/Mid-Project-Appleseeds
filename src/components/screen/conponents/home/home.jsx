@@ -8,13 +8,15 @@ const Home = () => {
   const { productsData } = useContext(myContext);
   return (
     <div className="contain_products">
-      <label htmlFor="">Search: </label>
-      <input
-        placeholder="Serach Symbol"
-        type="text"
-        value={inputSearch}
-        onChange={(evt) => setInputSearh(evt.target.value)}
-      />
+      <div className="contain_search">
+        <label htmlFor="">Search: </label>
+        <input
+          placeholder="Enter Symbol"
+          type="text"
+          value={inputSearch}
+          onChange={(evt) => setInputSearh(evt.target.value)}
+        />
+      </div>
 
       <div className="table">
         <div className="header">Symbol</div>
@@ -42,6 +44,7 @@ const Home = () => {
             </NavLink>
           );
         }
+        return "";
       })}
     </div>
   );

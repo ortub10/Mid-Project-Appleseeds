@@ -1,5 +1,4 @@
 .project {
-  border: 1px solid black;
   border-radius: 1rem;
   margin: 0.5rem;
   padding: 1rem;
@@ -7,6 +6,8 @@
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background-color: rgb(40, 161, 121);
 }
 
 .project i {
@@ -14,4 +15,26 @@
 }
 .inner-project {
   text-align: center;
+}
+
+.add_new_btn {
+  padding: 0.5rem 1rem;
+  margin: 0.5rem;
+  border: none;
+  border-radius: 1rem;
+  color: white;
+  background: linear-gradient(red, blue);
+  cursor: pointer;
+}
+
+.contain_fas {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.contain_projects {
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
 }

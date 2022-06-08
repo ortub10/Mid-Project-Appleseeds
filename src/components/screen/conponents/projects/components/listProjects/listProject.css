@@ -1,5 +1,11 @@
 .back {
   margin-top: 2rem;
+  color: white;
+  background-color: #80bde3;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
 }
 i {
   cursor: pointer;

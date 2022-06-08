@@ -29,3 +29,11 @@
     rgb(0, 184, 144)
   );
 }
+
+.logo {
+  width: 7rem;
+  height: 3.5rem;
+  align-self: flex-start;
+  margin: 1rem;
+  border-radius: 0.5rem;
+}

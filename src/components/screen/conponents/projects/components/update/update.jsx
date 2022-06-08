@@ -1,9 +1,9 @@
 import { myContext } from "../../../../screen";
 import { useContext, useEffect, useRef, useState } from "react";
-import "./addProject.css";
 import { useLocalStorage } from "../../../../../../hooks/useLocalStorage";
+import "./update.css";
 
-const AddProject = (props) => {
+const Update = (props) => {
   const { projectsArr, setProjectsArr } = useContext(myContext);
   const [inputValue, setInputValue] = useState("");
   const inputRef = useRef(null);
@@ -14,23 +14,19 @@ const AddProject = (props) => {
       inputRef.current.focus();
       inputRef.current.value = "";
     }
+
     setItem("arr", { arr: projectsArr });
   }, [projectsArr, setItem]);
 
-  const add = () => {
-    const tempObj = projectsArr.find((element) => element.name === inputValue);
-
-    if (tempObj === undefined) {
-      const newProject = {
-        name: inputValue,
-        stocks: [],
-      };
-
-      setProjectsArr((prev) => [...prev, newProject]);
-      props.setTrigger(false);
-    } else {
-      alert("name already exists ");
-    }
+  const handleUpdate = () => {
+    const tempObj = projectsArr.find((element) => element.name === props.name);
+    const newProject = { ...tempObj, name: inputValue };
+    const newProjectsArr = projectsArr.map((element) => {
+      if (element.name === props.name) return newProject;
+      return element;
+    });
+    setProjectsArr(newProjectsArr);
+    props.setTrigger(false);
   };
 
   return props.trigger ? (
@@ -46,10 +42,10 @@ const AddProject = (props) => {
 
         <button
           className="add_btn btn"
-          onClick={add}
           disabled={inputValue.length ? false : true}
+          onClick={handleUpdate}
         >
-          Add
+          Update
         </button>
 
         <button
@@ -65,4 +61,4 @@ const AddProject = (props) => {
   );
 };
 
-export default AddProject;
+export default Update;
