@@ -1,6 +1,7 @@
 import { Line } from "react-chartjs-2";
-import { Chart as ChartJS } from "chart.js/auto";
+import { Chart, registerables } from "chart.js";
 import "./graph.css";
+Chart.register(...registerables);
 const Graph = ({ dates }) => {
   const data = {
     labels: dates.map((date) => date.date),
