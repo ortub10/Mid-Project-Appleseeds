@@ -36,6 +36,7 @@ const ListProject = ({
 
   return (
     <>
+      <h1 className="header_project">{nameProject}</h1>
       <div>
         <div className="table">
           <div className="header">Symbol</div>

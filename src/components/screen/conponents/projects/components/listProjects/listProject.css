@@ -10,3 +10,9 @@
 i {
   cursor: pointer;
 }
+
+.header_project {
+  color: rgb(179, 245, 209);
+  text-decoration: underline;
+  padding: 1rem;
+}

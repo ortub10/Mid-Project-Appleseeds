@@ -9,10 +9,15 @@ const Projects = () => {
   const { projectsArr, setProjectsArr } = useContext(myContext);
   const [buttonPopup, setButtonPopup] = useState(false);
   const [buttonPopupUpdate, setButtonPopupUpdate] = useState(false);
+  const [updateName, setUpdateName] = useState("");
 
   const handleDeleteProject = (name) => {
     const newProjectsArr = projectsArr.filter((item) => item.name !== name);
     setProjectsArr(newProjectsArr);
+  };
+  const handleUpdateProject = (name) => {
+    setUpdateName(name);
+    setButtonPopupUpdate(true);
   };
 
   return (
@@ -20,7 +25,6 @@ const Projects = () => {
       <button className="add_new_btn" onClick={() => setButtonPopup(true)}>
         <i className="fa fa-plus-square"></i> &nbsp;Add New Project
       </button>
-
       <AddProject trigger={buttonPopup} setTrigger={setButtonPopup} />
 
       <div className="contain_projects">
@@ -41,19 +45,18 @@ const Projects = () => {
                 ></i>
 
                 <i
-                  onClick={() => setButtonPopupUpdate(true)}
+                  onClick={() => handleUpdateProject(project.name)}
                   className="fa fa-edit  fa-2x"
                 ></i>
-
-                <Update
-                  trigger={buttonPopupUpdate}
-                  name={project.name}
-                  setTrigger={setButtonPopupUpdate}
-                />
               </div>
             </div>
           );
         })}
+        <Update
+          trigger={buttonPopupUpdate}
+          name={updateName}
+          setTrigger={setButtonPopupUpdate}
+        />
       </div>
     </>
   );

@@ -12,21 +12,31 @@ const Update = (props) => {
   useEffect(() => {
     if (inputRef.current !== null) {
       inputRef.current.focus();
-      inputRef.current.value = "";
+      inputRef.current.value = props.name;
     }
+  }, [props.name]);
 
+  useEffect(() => {
     setItem("arr", { arr: projectsArr });
   }, [projectsArr, setItem]);
 
   const handleUpdate = () => {
     const tempObj = projectsArr.find((element) => element.name === props.name);
-    const newProject = { ...tempObj, name: inputValue };
-    const newProjectsArr = projectsArr.map((element) => {
-      if (element.name === props.name) return newProject;
-      return element;
-    });
-    setProjectsArr(newProjectsArr);
-    props.setTrigger(false);
+    const tempCheck = projectsArr.find(
+      (element) => element.name === inputValue
+    );
+
+    if (tempCheck === undefined || tempCheck.name === props.name) {
+      const newProject = { ...tempObj, name: inputValue };
+      const newProjectsArr = projectsArr.map((element) => {
+        if (element.name === props.name) return newProject;
+        return element;
+      });
+      setProjectsArr(newProjectsArr);
+      props.setTrigger(false);
+    } else {
+      alert("name already exists ");
+    }
   };
 
   return props.trigger ? (
